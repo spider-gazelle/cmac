@@ -6,7 +6,7 @@ Crystal implementation of the Cipher-based Message Authentication Code (CMAC) as
 
 ```crystal
 key = Random.new.random_bytes(16)
-message = 'attack at dawn'
+message = "attack at dawn"
 cmac = CMAC.new(key)
 cmac.sign(message)
  => Bytes[246, 184, 193, 76, 93, 115, 191, 26, 135, 60, 164, 161, 90, 224, 102, 170]
@@ -18,15 +18,15 @@ Once you've obtained the signature (also called a tag) of a message you can use 
 tag = Bytes[246, 184, 193, 76, 93, 115, 191, 26, 135, 60, 164, 161, 90, 224, 102, 170]
 cmac.valid_message?(tag, message)
  => true
-cmac.valid_message?(tag, 'attack at dusk')
+cmac.valid_message?(tag, "attack at dusk")
  => false
 ```
 
 CMAC can also be used with a variable length input key as described in RFC4615.
 
 ```crystal
-key = 'setec astronomy'
-message = 'attack at dawn'
+key = "setec astronomy"
+message = "attack at dawn"
 cmac = CMAC.new(key)
 cmac.sign(message)
  => Bytes[92, 17, 144, 230, 145, 178, 196, 130, 96, 144, 166, 236, 58, 14, 28, 243]
