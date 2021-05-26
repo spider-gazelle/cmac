@@ -5,3 +5,5 @@ lib
 app
 *.dwarf
 .DS_Store
+shard.lock
+bin

@@ -1,6 +1,6 @@
 # Crystal Lang CMAC
 
-[![Build Status](https://travis-ci.org/spider-gazelle/cmac.svg?branch=master)](https://travis-ci.org/spider-gazelle/cmac)
+[![CI](https://github.com/spider-gazelle/cmac/actions/workflows/ci.yml/badge.svg)](https://github.com/spider-gazelle/cmac/actions/workflows/ci.yml)
 
 Crystal implementation of the Cipher-based Message Authentication Code (CMAC) as defined in [RFC4493](http://tools.ietf.org/html/rfc4493), [RFC4494](http://tools.ietf.org/html/rfc4494), and [RFC4615](http://tools.ietf.org/html/rfc4615). Message authentication codes provide integrity protection of data given that two parties share a secret key.
 
