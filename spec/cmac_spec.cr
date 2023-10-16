@@ -20,6 +20,27 @@ describe CMAC do
       output.size.should eq(12)
     end
 
+    it "passes test vectors" do
+      nist_key128 = "2b7e151628aed2a6abf7158809cf4f3c".hexbytes
+      cmac = CMAC.new(nist_key128)
+      cmac.sign("").should eq("bb1d6929e95937287fa37d129b756746".hexbytes)
+
+      output = cmac.sign("6bc1bee22e409f96e93d7e117393172a".hexbytes)
+      output.should eq("070a16b46b4d4144f79bdd9dd04a287c".hexbytes)
+
+      cmac = CMAC.new("000102030405060708090a0b0c0d0e0fedcb".hexbytes)
+      output = cmac.sign("000102030405060708090a0b0c0d0e0f10111213".hexbytes)
+      output.should eq("84a348a4a45d235babfffc0d2b4da09a".hexbytes)
+
+      cmac = CMAC.new("000102030405060708090a0b0c0d0e0f".hexbytes)
+      output = cmac.sign("000102030405060708090a0b0c0d0e0f10111213".hexbytes)
+      output.should eq("980ae87b5f4c9c5214f5b6a8455e4c2d".hexbytes)
+
+      cmac = CMAC.new("00010203040506070809".hexbytes)
+      output = cmac.sign("000102030405060708090a0b0c0d0e0f10111213".hexbytes)
+      output.should eq("290d9e112edb09ee141fcf64c0b72f3d".hexbytes)
+    end
+
     it "raises error if truncation request is greater than 16 bytes" do
       cmac = CMAC.new(TEST_KEY)
       expect_raises(CMAC::Error, "Tag cannot be greater than maximum (16 bytes)") do
